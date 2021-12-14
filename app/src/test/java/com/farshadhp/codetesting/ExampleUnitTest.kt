@@ -18,7 +18,8 @@ class ExampleUnitTest {
 
     // functions for Date and Time
 
-    @Test    fun getDateTime_NetherslandsLocale(){
+    @Test
+    fun getDateTime_NetherslandsLocale(){
         Locale.setDefault(localesArr[516]/*its Netherlands*/)
         var date = viewModel.getDateTime()
         Assert.assertEquals("niedziela, 12 grudnia 2021",date)
