@@ -3,6 +3,7 @@ package com.farshadhp.codetesting
 
 import org.junit.Assert
 import org.junit.Test
+import org.mockito.Mock
 
 import java.util.*
 
@@ -15,6 +16,7 @@ class ExampleUnitTest {
 
     private var viewModel = MyViewModel()
     private var localesArr = Locale.getAvailableLocales()
+    //@Mock
 
     // functions for Date and Time
 
