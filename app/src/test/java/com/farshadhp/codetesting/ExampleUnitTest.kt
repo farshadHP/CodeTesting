@@ -4,6 +4,7 @@ package com.farshadhp.codetesting
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -18,37 +19,33 @@ import java.util.*
 
 class ExampleUnitTest {
 
-
     private var localesArr = Locale.getAvailableLocales()
+    var service: DateTools = mockk()
+    lateinit var viewModel : MyViewModel
+    
+    @Before fun initial(){
+        every { service.now()} returns LocalDate.of(2021,12,12)
+        viewModel = MyViewModel(service.now())
+    }
 
-
-    @MockK
-    lateinit var service: DateTools
-    private var viewModel = MyViewModel()
-    @Before
-    fun setUp() = MockKAnnotations.init(this)
     // functions for Date and Time
     @Test
     fun getDateTime_NetherslandsLocale(){
         Locale.setDefault(localesArr[516]/*its Netherlands*/)
-        //val service = mockk<DateTools>()
-        every { service.now()} returns LocalDate.of(2021,12,12)
-        var date = viewModel.getDateTime(service.now())
+        var date = viewModel.getDateTime()
         Assert.assertEquals("niedziela, 12 grudnia 2021",date)
     }
 
     @Test
     fun getDateTime_UsLocale(){
-        every { service.now()} returns LocalDate.of(2021,12,12)
         Locale.setDefault(Locale.US)
-        var date = viewModel.getDateTime(service.now())
+        var date = viewModel.getDateTime()
         Assert.assertEquals("Sunday, December 12, 2021",date)
     }
     @Test
     fun getDateTime_UkLocale(){
-        every { service.now()} returns LocalDate.of(2021,12,12)
         Locale.setDefault(Locale.UK)
-        var date = viewModel.getDateTime(service.now())
+        var date = viewModel.getDateTime()
         Assert.assertEquals("Sunday, 12 December 2021",date)
     }
     // functions for Currency

@@ -9,10 +9,10 @@ import java.time.format.DateTimeFormatter.ofLocalizedDate
 import java.time.format.FormatStyle
 import java.util.*
 
-class MyViewModel: ViewModel()  {
+class MyViewModel(var currentDate : LocalDate): ViewModel()  {
     private var money = 500000
     private var num = 3.145
-    fun getDateTime(currentDate : LocalDate) : String {
+    fun getDateTime() : String {
         val formatter: DateTimeFormatter = ofLocalizedDate(FormatStyle.FULL).withLocale(Locale.getDefault())
         return formatter.format(currentDate)
     }
