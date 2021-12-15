@@ -22,10 +22,10 @@ class ExampleUnitTest {
     private var localesArr = Locale.getAvailableLocales()
     var service: DateTools = mockk()
     lateinit var viewModel : MyViewModel
-    
+
     @Before fun initial(){
         every { service.now()} returns LocalDate.of(2021,12,12)
-        viewModel = MyViewModel(service.now())
+        viewModel = MyViewModel(service)
     }
 
     // functions for Date and Time
